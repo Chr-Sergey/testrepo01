@@ -11,6 +11,7 @@ kpartx -av /img10//osimage.img
 mount /dev/mapper/loop0p1 /img11/
 mount /dev/mapper/loop0p2 /img12/
 mount /img11/rescue.img /img13/
+123
 
 
 
