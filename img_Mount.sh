@@ -17,7 +17,7 @@ echo "Download image  is fail"
 
 else
 echo "Download "$image" is GOOD."
-unzip /images/$image -d /img10/ &> /dev/null
+unzip /images/$image -d /img10/
 kpartx -av /img10//osimage.img
 mount /dev/mapper/loop0p1 /img11
 mount /dev/mapper/loop0p2 /img12/
