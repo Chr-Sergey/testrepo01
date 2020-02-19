@@ -23,6 +23,8 @@ mount /dev/mapper/loop0p1 /img11
 mount /dev/mapper/loop0p2 /img12/
 mount /img12/rescue.img /img13/
 fi
+echo "Image "$image" is mount success!"
+
 
 
 
