@@ -9,14 +9,22 @@ umount /img13
 umount /img12
 
 
-
 wget -P /images --user jenkins --password jenkins "http://192.168.102.115:8083/repository/init_image/$image"
-
+if [ $? -ne 0]; then
 unzip /images/$image -d /img10/
 kpartx -av /img10//osimage.img
 mount /dev/mapper/loop0p1 /img11/
 mount /dev/mapper/loop0p2 /img12/
 mount /img12/rescue.img /img13/
+
+
+else 
+echo "Download image  is fail"
+fi
+
+
+
+
 
 
 
