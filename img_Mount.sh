@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +x
+
 image="init_img_linux-linux-4.9.69-xenomai-3.0.6-led-behaviour_linux_bbb_0_b_.1.0.9700.0.img.zip"
 
 rm /images/$image
@@ -9,17 +11,17 @@ umount /img13
 umount /img12
 
 
-wget -P /images --user jenkins --password jenkins "http://192.168.102.115:8083/repository/init_image/$image"
-if [ $? -ne 0]; then
-unzip /images/$image -d /img10/
+wget -P /images --user jenkins --password jenkins "http://192.168.102.115:8083/repository/init_image/$image" &> /dev/null 
+if [[ "$?" != 0 ]]; then
+echo "Download image  is fail"
+
+else
+echo "Download "$image" is GOOD."
+unzip /images/$image -d /img10/ &> /dev/null
 kpartx -av /img10//osimage.img
-mount /dev/mapper/loop0p1 /img11/
+mount /dev/mapper/loop0p1 /img11
 mount /dev/mapper/loop0p2 /img12/
 mount /img12/rescue.img /img13/
-
-
-else 
-echo "Download image  is fail"
 fi
 
 
